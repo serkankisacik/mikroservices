@@ -1,21 +1,24 @@
-package com.example.inventoryService.business.requests.create;
+package com.example.inventoryService.business.requests.update;
 
-import com.example.inventoryService.entities.Model;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
 
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-public class CreateBrandRequest {
+@AllArgsConstructor
+public class UpdateModelRequest {
     @NotBlank
     @NotNull
     @Size(min = 2, max = 20)
     private String name;
+    @NotBlank
+    @NotNull
+    private String brandId;
 }

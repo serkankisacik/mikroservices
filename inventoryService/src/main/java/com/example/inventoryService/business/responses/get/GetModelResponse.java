@@ -1,6 +1,5 @@
 package com.example.inventoryService.business.responses.get;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,12 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetAllCarResponse {
+public class GetModelResponse {
     private String id;
-    private double dailyPrice;
-    private int modelYear;
-    private String plate;
-    private int state;
+    private String name;
+    private String brandId;
     private String brandName;
-    private String modelName;
 }

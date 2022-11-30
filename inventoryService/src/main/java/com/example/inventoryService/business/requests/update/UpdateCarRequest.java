@@ -1,20 +1,20 @@
-package com.example.inventoryService.business.requests.create;
+package com.example.inventoryService.business.requests.update;
 
-import com.example.inventoryService.entities.Model;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-public class CreateCarRequest {
+@AllArgsConstructor
+public class UpdateCarRequest {
     @Min(value = 0)
     private double dailyPrice;
     @Min(value = 2015)
