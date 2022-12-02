@@ -8,6 +8,7 @@ import com.kodlamaio.rentalservice.business.responses.create.CreateRentalRespons
 import com.kodlamaio.rentalservice.business.responses.get.GetAllRentalResponse;
 import com.kodlamaio.rentalservice.business.responses.get.GetRentalResponse;
 import com.kodlamaio.rentalservice.business.responses.update.UpdateRentalResponse;
+import com.kodlamaio.rentalservice.client.CarClient;
 import com.kodlamaio.rentalservice.dataAccess.abstracts.RentalRepository;
 import com.kodlamaio.rentalservice.entities.Rental;
 import com.kodlamaio.common.utilities.mapping.ModelMapperService;
@@ -26,6 +27,8 @@ public class RentalManager implements RentalService {
     private final ModelMapperService mapper;
     private RentalProducer rentalProducer;
 
+    private CarClient client;
+
     @Override
     public List<GetAllRentalResponse> getAll() {
         List<Rental> rentals = repository.findAll();
@@ -34,8 +37,10 @@ public class RentalManager implements RentalService {
     }
 
     @Override
-    public CreateRentalResponse add(CreateRentalRequest createBrandRequest) {
-        Rental rental = mapper.forRequest().map(createBrandRequest, Rental.class);
+    public CreateRentalResponse add(CreateRentalRequest createRentalRequest) {
+        client.checkIfCarAvailable(createRentalRequest.getCarId());
+
+        Rental rental = mapper.forRequest().map(createRentalRequest, Rental.class);
         rental.setId(UUID.randomUUID().toString());
         rental.setDateStarted(LocalDateTime.now());
         repository.save(rental);

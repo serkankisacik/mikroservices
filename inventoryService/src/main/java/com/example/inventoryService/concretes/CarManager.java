@@ -83,4 +83,12 @@ public class CarManager implements CarService {
             throw new BusinessException("CAR.ALREADY_EXISTS");
         }
     }
+
+    @Override
+    public void checkIfCarAvailable(String id) {
+        Car car = repository.findById(id).get();
+        if (car.getState() == 3) {
+            throw new BusinessException("CAR.NOT_AVAILABLE");
+        }
+    }
 }
