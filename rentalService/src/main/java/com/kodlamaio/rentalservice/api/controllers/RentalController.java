@@ -10,23 +10,31 @@ import com.kodlamaio.rentalservice.business.responses.update.UpdateRentalRespons
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
 @RequestMapping("/api/v1/rentals")
 public class RentalController {
     private final RentalService rentalService;
+    Logger logger = LoggerFactory.getLogger(RentalController.class);
+
+    public RentalController(RentalService rentalService) {
+        this.rentalService = rentalService;
+    }
 
     @GetMapping
     public List<GetAllRentalResponse> getAll() {
+        logger.info("Getting all rentals");
         return rentalService.getAll();
     }
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
     public CreateRentalResponse add(@RequestBody CreateRentalRequest request) {
+        logger.info("Adding new rental");
         return rentalService.add(request);
     }
 
