@@ -14,12 +14,14 @@
         <module name="common" />
         <module name="rentalService" />
         <module name="paymentService" />
+        <module name="filterService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="apigateway" target="17" />
       <module name="common" target="17" />
       <module name="discovery-server" target="17" />
+      <module name="filterService" target="17" />
       <module name="inventoryService" target="17" />
       <module name="invoiceService" target="17" />
       <module name="paymentService" target="17" />
@@ -31,6 +33,7 @@
       <module name="apigateway" options="-parameters" />
       <module name="common" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
+      <module name="filterService" options="-parameters" />
       <module name="inventoryService" options="-parameters" />
       <module name="invoiceService" options="-parameters" />
       <module name="paymentService" options="-parameters" />
