@@ -50,7 +50,6 @@ public class CarManager implements CarService {
         car.setId(UUID.randomUUID().toString());
         repository.save(car);
         CreateCarResponse response = mapper.forResponse().map(car, CreateCarResponse.class);
-
         return response;
     }
 
