@@ -31,7 +31,26 @@ public class Invoice {
 
     @Column(name = "date")
     private LocalDateTime date;
+
     @Column(name = "referenceNumber")
     private String referenceNumber;
+    @Column(name = "car_id")
+    private String carId;
+    @Column(name = "full_name")
+    private String fullName;
+    @Column(name = "model_name")
+    private String modelName;
+    @Column(name = "brand_name")
+    private String brandName;
+    @Column(name = "model_year")
+    private int modelYear;
+    @Column(name = "daily_price")
+    private double dailyPrice;
+    @Column(name = "total_price")
+    private double totalPrice;
+    @Column(name = "rented_for_days")
+    private int rentedForDays;
+    @Column(name = "rented_at")
+    private LocalDateTime rentedAt;
 
 }

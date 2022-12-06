@@ -16,12 +16,9 @@ public class Payment {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "userId")
+    @Column(name = "user_id")
     private String userId;
 
-    @Column(name = "carId")
+    @Column(name = "car_id")
     private String carId;
-
-
-
 }
