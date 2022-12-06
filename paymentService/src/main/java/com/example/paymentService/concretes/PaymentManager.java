@@ -42,10 +42,12 @@ public class PaymentManager implements PaymentService {
     }
 
     @Override
-    public CreatePaymentResponse add(CreatePaymentRequest request) {
-        checkIfCardNumberExists(request.getCardNumber());
-        Payment payment = mapper.forRequest().map(request, Payment.class);
+    public CreatePaymentResponse add(CreatePaymentRequest createPaymentRequest) {
+        Payment payment = mapper.forRequest().map(createPaymentRequest, Payment.class);
         payment.setId(UUID.randomUUID().toString());
+
+        posService.pay();
+
         paymentRepository.save(payment);
         CreatePaymentResponse response = mapper.forResponse().map(payment, CreatePaymentResponse.class);
         return response;
@@ -72,30 +74,9 @@ public class PaymentManager implements PaymentService {
 
     }
 
-    private void checkPayment(PaymentRequest request) {
-        if (!paymentRepository.existsByCardNumberAndFullNameAndCardExpirationYearAndCardExpirationMonthAndCardCvv(
-                request.getCardNumber(),
-                request.getFullName(),
-                request.getCardExpirationYear(),
-                request.getCardExpirationMonth(),
-                request.getCardCvv())) {
-            throw new BusinessException("NOT_A_VALID_PAYMENT!");
-        } else {
-            posService.pay(); // Fake payment
-            Payment payment = paymentRepository.findByCardNumber(request.getCardNumber());
-            paymentRepository.save(payment);
-        }
-    }
-
     private void checkIfPaymentExists(String id) {
         if (!paymentRepository.existsById(id)) {
             throw new BusinessException("PAYMENT_NOT_FOUND!");
-        }
-    }
-
-    private void checkIfCardNumberExists(String cardNumber) {
-        if (paymentRepository.existsByCardNumber(cardNumber)) {
-            throw new BusinessException("CARD_NUMBER_ALREADY_EXISTS!");
         }
     }
 }

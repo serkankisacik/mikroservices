@@ -14,6 +14,9 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreatePaymentRequest {
+    private String userId;
+    private String carId;
+
     @NotBlank(message = "Card number is required")
     @Length(min = 16, max = 16, message = "Card number must be 16 characters long")
     private String cardNumber;
@@ -30,7 +33,4 @@ public class CreatePaymentRequest {
     @NotBlank(message = "Card CVV is required")
     @Length(min = 3, max = 3, message = "Card CVV must be 3 characters long")
     private String cardCvv;
-    @NotNull(message = "Balance is required")
-    @Min(value = 1, message = "Balance must be at least 1")
-    private double balance;
 }
