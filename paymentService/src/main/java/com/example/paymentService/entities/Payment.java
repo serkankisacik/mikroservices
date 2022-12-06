@@ -22,16 +22,6 @@ public class Payment {
     @Column(name = "carId")
     private String carId;
 
-    @Column(name = "days")
-    private int days;
 
-    @Column(name = "price")
-    private double price;
-
-    @Column(name = "tax")
-    private double tax;
-
-    @Column(name = "amount")
-    private double amount;
 
 }
