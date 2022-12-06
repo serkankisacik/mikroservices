@@ -1,4 +1,4 @@
-package com.example.inventoryService.concretes;
+package com.example.inventoryService.business.concretes;
 
 import com.example.inventoryService.business.abstracts.ModelService;
 import com.example.inventoryService.business.requests.create.CreateModelRequest;

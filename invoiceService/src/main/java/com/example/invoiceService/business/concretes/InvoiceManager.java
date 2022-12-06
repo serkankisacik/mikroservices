@@ -1,4 +1,4 @@
-package com.example.invoiceService.concretes;
+package com.example.invoiceService.business.concretes;
 
 import com.example.invoiceService.business.abstracts.InvoiceService;
 import com.example.invoiceService.business.requests.create.CreateInvoiceRequest;
