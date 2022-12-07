@@ -1,6 +1,6 @@
 package com.kodlamaio.rentalservice.kafka;
 
-import com.kodlamaio.common.events.RentalCreatedEvent;
+import com.kodlamaio.common.events.rental.RentalCreatedEvent;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

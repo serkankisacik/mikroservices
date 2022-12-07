@@ -1,6 +1,7 @@
 package com.kodlamaio.rentalservice.business.concretes;
 
-import com.kodlamaio.common.events.RentalCreatedEvent;
+import com.kodlamaio.common.events.payment.PaymentReceivedEvent;
+import com.kodlamaio.common.events.rental.RentalCreatedEvent;
 import com.kodlamaio.rentalservice.business.abstracts.RentalService;
 import com.kodlamaio.rentalservice.business.requests.create.CreateRentalRequest;
 import com.kodlamaio.rentalservice.business.requests.update.UpdateRentalRequest;
@@ -55,6 +56,14 @@ public class RentalManager implements RentalService {
 
         rental.setDateStarted(LocalDateTime.now());
         repository.save(rental);
+
+        PaymentReceivedEvent paymentReceivedEvent = new PaymentReceivedEvent();
+        paymentReceivedEvent.setCarId(rental.getCarId());
+        paymentReceivedEvent.setFullName(createRentalRequest.getFullName());
+        paymentReceivedEvent.setDailyPrice(createRentalRequest.getDailyPrice());
+        paymentReceivedEvent.setTotalPrice(totalPrice);
+        paymentReceivedEvent.setRentedForDays(createRentalRequest.getRentedForDays());
+        paymentReceivedEvent.setRentedAt(rental.getDateStarted());
 
         RentalCreatedEvent rentalCreatedEvent = new RentalCreatedEvent();
         rentalCreatedEvent.setCarId(rental.getCarId());
