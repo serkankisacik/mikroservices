@@ -33,4 +33,5 @@ public class Filter {
     private String plate;
     @Field(name = "state")
     private int state;
+
 }
