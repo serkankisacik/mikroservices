@@ -11,6 +11,8 @@ import com.example.paymentService.bussiness.responses.get.GetPaymentResponse;
 import com.example.paymentService.bussiness.responses.update.UpdatePaymentResponse;
 import com.example.paymentService.dataAccess.abstracts.PaymentRepository;
 import com.example.paymentService.entities.Payment;
+import com.kodlamaio.common.constants.Messages;
+import com.kodlamaio.common.dto.CreateRentalPaymentRequest;
 import com.kodlamaio.common.utilities.exceptions.BusinessException;
 import com.kodlamaio.common.utilities.mapping.ModelMapperService;
 import lombok.AllArgsConstructor;
@@ -70,8 +72,13 @@ public class PaymentManager implements PaymentService {
     }
 
     @Override
-    public void checkIfPaymentSuccessful(PaymentRequest request) {
+    public void checkIfPaymentSuccessful(CreateRentalPaymentRequest request) {
+        checkPayment(request);
+    }
 
+
+    private void checkPayment(CreateRentalPaymentRequest request) {
+        posService.pay();
     }
 
     private void checkIfPaymentExists(String id) {

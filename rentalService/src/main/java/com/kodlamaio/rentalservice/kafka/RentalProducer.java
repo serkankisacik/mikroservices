@@ -1,5 +1,6 @@
 package com.kodlamaio.rentalservice.kafka;
 
+import com.kodlamaio.common.events.payment.PaymentReceivedEvent;
 import com.kodlamaio.common.events.rental.RentalCreatedEvent;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.slf4j.Logger;
@@ -29,6 +30,15 @@ public class RentalProducer {
 
         Message<RentalCreatedEvent> message = MessageBuilder
                 .withPayload(rentalCreatedEvent)
+                .setHeader(KafkaHeaders.TOPIC, topic.name()).build();
+
+        kafkaTemplate.send(message);
+    }
+
+    public void sendMessage(PaymentReceivedEvent event) {
+        LOGGER.info(String.format("Payment received event => %s", event.toString()));
+        Message<PaymentReceivedEvent> message = MessageBuilder
+                .withPayload(event)
                 .setHeader(KafkaHeaders.TOPIC, topic.name()).build();
 
         kafkaTemplate.send(message);

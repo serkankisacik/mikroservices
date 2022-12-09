@@ -52,4 +52,9 @@ public class CarsController {
         service.checkIfCarAvailable(id);
     }
 
+    @GetMapping("/get-car-response/{id}")
+    public GetCarResponse getCarResponse(@PathVariable String id) {
+        return service.getById(id);
+    }
+
 }

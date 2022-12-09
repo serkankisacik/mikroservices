@@ -8,6 +8,7 @@ import com.example.paymentService.bussiness.responses.create.CreatePaymentRespon
 import com.example.paymentService.bussiness.responses.get.GetAllPaymentResponse;
 import com.example.paymentService.bussiness.responses.get.GetPaymentResponse;
 import com.example.paymentService.bussiness.responses.update.UpdatePaymentResponse;
+import com.kodlamaio.common.dto.CreateRentalPaymentRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,20 +47,7 @@ public class PaymentController {
     }
 
     @PostMapping("/check")
-    public void checkIfPaymentSuccessful(
-            @RequestParam String cardNumber,
-            @RequestParam String fullName,
-            @RequestParam int cardExpirationYear,
-            @RequestParam int cardExpirationMonth,
-            @RequestParam String cardCvv,
-            @RequestParam double price) {
-        PaymentRequest request =
-                new PaymentRequest(cardNumber,
-                        fullName,
-                        cardExpirationYear,
-                        cardExpirationMonth,
-                        cardCvv,
-                        price);
+    public void checkIfPaymentSuccessful(@RequestBody CreateRentalPaymentRequest request) {
         paymentService.checkIfPaymentSuccessful(request);
     }
 }
